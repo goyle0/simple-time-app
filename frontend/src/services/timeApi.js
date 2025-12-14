@@ -2,7 +2,8 @@
  * 時刻API通信サービス
  */
 
-const API_BASE_URL = '/api/v1'
+// Viteのbase設定を使用してAPIパスを構築
+const API_BASE_URL = `${import.meta.env.BASE_URL}api/v1`
 const TIMEOUT_MS = 5000
 
 /**
