@@ -1,0 +1,19 @@
+# 本番環境設定
+
+# ログ設定（本番用：JSON形式）
+logging:
+  level:
+    root: WARN
+    com.example.timeapp: INFO
+  pattern:
+    console: '{"timestamp":"%d{yyyy-MM-dd HH:mm:ss.SSS}","level":"%level","logger":"%logger{36}","message":"%msg"}%n'
+
+# Actuator（本番用：最小限のエンドポイント）
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
