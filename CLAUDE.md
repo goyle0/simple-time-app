@@ -66,10 +66,10 @@ docker build -t simple-time-app:1.0.0 .
 docker run -d --name simple-time-app --restart unless-stopped -p 8080:8080 simple-time-app:1.0.0
 
 # ヘルスチェック
-curl http://localhost:8080/actuator/health
+curl http://localhost:8080/simple-time-app/actuator/health
 
 # 時刻API確認
-curl http://localhost:8080/api/v1/time
+curl http://localhost:8080/simple-time-app/api/v1/time
 ```
 
 <!-- END AUTO-MANAGED -->
@@ -144,8 +144,8 @@ simple-time-app/
 
 | メソッド | パス | 説明 |
 |---------|------|------|
-| GET | `/api/v1/time` | 現在時刻を取得 |
-| GET | `/actuator/health` | ヘルスチェック |
+| GET | `/simple-time-app/api/v1/time` | 現在時刻を取得 |
+| GET | `/simple-time-app/actuator/health` | ヘルスチェック |
 
 #### GET /api/v1/time レスポンス
 ```json
@@ -168,7 +168,8 @@ simple-time-app/
 - **命名規則**: クラス=PascalCase, メソッド/変数=camelCase
 - **アノテーション**: Lombok (`@Data`, `@Builder`, `@Slf4j`)
 - **DI**: コンストラクタインジェクション推奨
-- **ログ形式**: JSON形式で標準出力
+- **コンテキストパス**: `/simple-time-app` (application.yml)
+- **ログ形式**: 標準コンソール出力 (タイムスタンプ + スレッド + ログレベル)
 
 ### Vue.js (Frontend)
 - **コンポーネント**: Composition API (`<script setup>`)
@@ -196,7 +197,7 @@ simple-time-app/
 |------|------|
 | API応答時間 | < 100ms |
 | ユーザビリティ | PC・スマートフォン対応レスポンシブデザイン |
-| ログ形式 | JSON形式で標準出力 |
+| ログ形式 | 標準コンソール出力 (INFOレベル) |
 | セキュリティ | コンテナは非rootユーザーで実行 |
 
 ### Dockerパターン
@@ -210,9 +211,9 @@ simple-time-app/
 ## Best Practices
 
 ### 開発ワークフロー
-1. Spring Boot起動 (`mvn spring-boot:run`) → http://localhost:8080
+1. Spring Boot起動 (`mvn spring-boot:run`) → http://localhost:8080/simple-time-app
 2. Vue.js開発サーバー起動 (`npm run dev`) → http://localhost:3000
-3. Viteプロキシにより `/api/*` は自動的に `:8080` へ転送
+3. Viteプロキシにより `/api/*` は自動的に `http://localhost:8080/simple-time-app` へ転送
 
 ### デプロイフロー
 1. `docker build -t simple-time-app:1.0.0 .`

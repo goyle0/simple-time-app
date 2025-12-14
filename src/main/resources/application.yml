@@ -4,6 +4,8 @@ spring:
 
 server:
   port: 8080
+  servlet:
+    context-path: /simple-time-app
 
 # Actuator設定
 management:
