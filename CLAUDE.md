@@ -176,6 +176,7 @@ simple-time-app/
 - **命名規則**: コンポーネント=PascalCase, 変数/関数=camelCase
 - **スタイル**: Scoped CSS
 - **状態管理**: `ref`, `reactive`（Pinia不要）
+- **ベースパス**: `/simple-time-app/` (vite.config.js)
 
 ### 全般
 - **インデント**: 2スペース (Vue), 4スペース (Java)
