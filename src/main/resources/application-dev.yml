@@ -1,0 +1,20 @@
+# 開発環境設定
+spring:
+  devtools:
+    restart:
+      enabled: true
+
+# ログレベル（開発用：詳細ログ）
+logging:
+  level:
+    com.example.timeapp: DEBUG
+
+# Actuator（開発用：全エンドポイント公開）
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: simple-time-app
+
+server:
+  port: 8080
+
+# Actuator設定
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when_authorized
+
+# ログ設定
+logging:
+  level:
+    root: INFO
+    com.example.timeapp: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
